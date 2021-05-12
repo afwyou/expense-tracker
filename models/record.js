@@ -3,8 +3,10 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema({
   name: String,
   category: String,
-  date: String,
+  date: { type: Date, default: Date.now },
   amount: Number,
+  categoryIcon: { type: String, },
+  merchant: { type: String, },
 })
 
 
