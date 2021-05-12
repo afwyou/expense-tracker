@@ -1,0 +1,29 @@
+{
+  "category": [
+    {
+      "name-ch": "家居物業",
+      "name": "home",
+      "icon": "fas fa-home"
+    },
+    {
+      "name-ch": "交通出行",
+      "name": "transportation",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "name-ch": "休閒娛樂",
+      "name": "entertainment",
+      "icon": "fas fa-grin-beam"
+    },
+    {
+      "name-ch": "餐飲食品",
+      "name": "food",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name-ch": "其他",
+      "name": "other",
+      "icon": "fas fa-pen"
+    }
+  ]
+}
