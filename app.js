@@ -6,6 +6,14 @@ require('./config/mongoose')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
+const helper = exphbs.create({
+  defaultLayout: 'main',
+  helpers: {
+    eq: function (v1, v2) {
+      return v1 === v2
+    }
+  }
+})
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')

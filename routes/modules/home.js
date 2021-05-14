@@ -2,10 +2,18 @@ const express = require('express')
 const router = express.Router()
 //require model
 const Record = require('../../models/record')
+const Category = require('../../models/category')
 
 
 //定義路由首頁面
 router.get('/', (req, res) => {
+  const categoryList = []
+  Category.find()
+    .lean()
+    .then((items) => {
+      items.forEach((item) => categoryList.push(item.name))
+    })
+
   const amount = Record.aggregate([
     {
       $group: {
@@ -27,10 +35,15 @@ router.get('/', (req, res) => {
     }
   ]).exec()
 
-  Promise.all([amount, record])
-    .then(([amount, record]) => {
+  Promise.all([amount, record, categoryList])
+    .then(([amount, record, categoryList]) => {
+
       const totalamount = amount[0]
-      res.render('index', { totalamount, record })
+
+      res.render('index', { totalamount, record, categoryList })
+      console.log(amount)
+      console.log(totalamount)
+      console.log('record')
     })
     .catch(error => console.error(error))
 })
