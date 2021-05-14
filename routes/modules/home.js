@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   Category.find()
     .lean()
     .then((items) => {
-      items.forEach((item) => categoryList.push(item.name))
+      items.forEach((item) => categoryList.push(item.category))
     })
 
   const amount = Record.aggregate([
