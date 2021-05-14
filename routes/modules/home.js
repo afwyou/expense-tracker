@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
   const amount = Record.aggregate([
     {
       $group: {
-        _id: null,
-        amount: { $sum: "$amount" }
+        _id: null,//沒有要根據什麼來分組
+        totalamount: { $sum: "$amount" }//我要操作的資料代號是amount，這個資料代號代表我要加總($sum)欄位amount的值
       }
     }
   ]).exec()
@@ -34,16 +34,15 @@ router.get('/', (req, res) => {
       }
     }
   ]).exec()
-
+  // console.log(amount) //Promise { <pending> }
   Promise.all([amount, record, categoryList])
     .then(([amount, record, categoryList]) => {
 
       const totalamount = amount[0]
 
       res.render('index', { totalamount, record, categoryList })
-      console.log(amount)
-      console.log(totalamount)
-      console.log('record')
+      // console.log(amount) //is an array
+      // console.log(totalamount) //is an object
     })
     .catch(error => console.error(error))
 })
