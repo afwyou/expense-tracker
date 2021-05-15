@@ -14,4 +14,11 @@ router.get('/new', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+router.post('/', (req, res) => {
+  const { name, date, category, amount } = req.body
+  return Record.create({ name, date, category, amount })
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
+})
+
 module.exports = router
