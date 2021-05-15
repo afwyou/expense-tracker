@@ -1,0 +1,46 @@
+<div class="container new-page mt-5" style="width: 50%;">
+  <h2 class="my-4 text-center edit-title mx-auto" style="width: fit-content;">修改此筆內容</h2>
+
+  {{!-- 表單內容 --}}
+  <form action="/records/{{ record._id }}?_method=PUT" method="POST">
+
+    {{!-- 名稱 --}}
+    <div class="form-group my-3">
+      <label for="exampleInputEmail1">名稱</label>
+      <input type="text" class="form-control" id="exampleInputText" placeholder="請輸入名稱" name="name"
+        value="{{ record.name }}">
+    </div>
+    {{!-- 日期 --}}
+    <div class="form-group my-3">
+      <label for="exampleFormControlSelect1">日期</label>
+      <input type="date" class="form-control" id="exampleInputDate" placeholder="請輸入日期" name="date"
+        value="{{ record.date }}">
+    </div>
+    {{!-- 類別 --}}
+    <div class="form-group my-3">
+      <label for="inputState" class="form-label">類別</label>
+      <select id="inputState" class="form-select" placeholder="請選擇類別" name="category">
+        <option selected>請選擇類別</option>
+        {{#each categoryList}}
+        <option value="{{this}}" {{#if (eq this ../record.category)}}selected {{/if}}>{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+
+
+    {{!-- 金額 --}}
+    <div class="form-group my-3">
+      <label for="exampleInputEmail1">金額</label>
+      <input type="number" class="form-control" id="exampleInputText" placeholder="請輸入金額" min="0" step="1" name="amount"
+        value="{{ record.amount }}">
+    </div>
+
+
+    <div class="text-end">
+      <a class="btn btn-success mx-3" href="/">取消</a>
+
+      <button type="submit" class="btn btn-primary my-2">確認修改</button>
+    </div>
+  </form>
+</div>
