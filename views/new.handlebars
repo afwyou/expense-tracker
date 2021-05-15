@@ -1,0 +1,39 @@
+<div class="container new-page mt-5" style="width: 50%;">
+  <h2 class="mt-4 text-center new-title mx-auto" style="width: fit-content;">請輸入您的支出</h2>
+  <small class="text-center" style="display: block;">*為必填</small>
+
+
+  {{!-- 表單開始 --}}
+  <form action="/records" method="POST">
+    {{!-- 輸入名稱 --}}
+    <div class="form-group my-4" <label for="exampleInputEmail1">名稱*</label>
+      <input type="text" class="form-control" id="exampleInputText" placeholder="請輸入名稱" name="name">
+    </div>
+    {{!-- 日期 --}}
+    <div class="form-group my-3">
+      <label for="exampleFormControlSelect1">日期*</label>
+      <input type="date" class="form-control" id="exampleInputDate" placeholder="請輸入日期" name="date">
+    </div>
+    {{!-- 類別 --}}
+    <div class="form-group my-3">
+      <label for="inputState" class="form-label">類別*</label>
+      <select id="inputState" class="form-select" placeholder="請選擇類別" name="category">
+        <option selected>請選擇類別</option>
+        {{#each category}}
+        <option>{{this.category}}</option>
+        {{/each}}
+      </select>
+    </div>
+    {{!-- 金額 --}}
+    <div class="form-group my-3">
+      <label for="exampleInputEmail1">金額*</label>
+      <input type="number" class="form-control" id="exampleInputText" placeholder="請輸入金額" min="0" step="1"
+        name="amount">
+    </div>
+
+    {{!-- 表單送出 --}}
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary my-2">新增支出</button>
+    </div>
+  </form>
+</div>
