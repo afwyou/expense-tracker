@@ -16,9 +16,17 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const { name, date, category, amount } = req.body
-  return Record.create({ name, date, category, amount })
-    .then(() => res.redirect('/'))
+  const record = req.body
+  const category = record.category
+  Category.findOne({ category: category })//資料庫的屬性名稱是category，不是name
+    .lean()
+    .then((item) => {
+      return (record.categoryIcon = item.categoryIcon)
+    })
+    .then(() => {
+      Record.create(record)
+      res.redirect('/')
+    })
     .catch((error) => console.log(error))
 })
 
