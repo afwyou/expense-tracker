@@ -42,7 +42,7 @@ router.get('/:id/edit', (req, res) => {
     .then((record) => res.render('edit', { record, categoryList }))
 })
 
-router.put('/:id/', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   const { name, date, category, amount } = req.body
   return Record.findById(id)
@@ -69,6 +69,14 @@ router.put('/:id/', (req, res) => {
       res.redirect('/')
     })
     .catch((error) => console.log(error))
+})
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 module.exports = router
