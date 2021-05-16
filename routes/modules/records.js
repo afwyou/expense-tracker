@@ -53,24 +53,24 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   const id = req.params.id
   const { name, date, category, amount } = req.body
-  return Record.findById(id)
+  console.log('第一個列印', category)//1
+  Record.findById(id)
     // .lean()//原來不可以有lean()???
     .then(r => {
       r = Object.assign(r, req.body)
-      return r.save()
-      // record.name = name
-      // record.date = date
-      // record.category = category
-      // record.amount = amount
-      // Category.findOne({ name: category })
-      //   .lean()
-      //   .then((item) => {
-      //     record.categoryIcon = item.categoryIcon
-      //   })
-      //   .then(() => {
-      // return record.save()
-      //   })
-      // })
+      Category.findOne({ category: category })
+        .lean()
+        .then((item) => {
+          console.log('第二個列印', item)//2
+          return (r.categoryIcon = item.categoryIcon)
+        })
+        //想辦法讓新的icon存進去之後，再做存擋
+
+        .then(() => {
+          console.log('第三個列印', r.categoryIcon)//3
+          r.save()
+        })
+
     })
 
     .then(() => {
