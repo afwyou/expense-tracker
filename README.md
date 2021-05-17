@@ -3,7 +3,7 @@
 運用Node.js + Express框架與MongoDB資料庫製作的精簡版記帳網頁，使用者可以任意新增自己的支出，並將支出分類，首頁可以查看、編輯、刪除各項支出項目；使用者也可以使用篩選功能查看特定類別的支出項目總和。
 
 專案畫面
-
+![image](https://github.com/afwyou/expense-tracker/blob/master/Opera%20快照_2021-05-17_150357_localhost.png)
 
 index
 
