@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
         category: 1,
         amount: 1,
         merchant: 1,
-        date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+        date: 1,
         categoryIcon: 1,
       }
     }
@@ -41,7 +41,7 @@ router.get('/', (req, res) => {
   Promise.all([amount, record, categoryList])
     .then(([amount, record, categoryList]) => {
 
-      const totalamount = amount[0]
+      const totalamount = amount[0].totalamount
 
       res.render('index', { totalamount, record, categoryList })
       // console.log(amount) //is an array

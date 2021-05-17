@@ -3,10 +3,12 @@ const router = express.Router()
 const Category = require('../../models/category')
 const Record = require('../../models/record')
 
-router.get('/filter', (req, res) => {
+router.get('/', (req, res) => {
+  //在index.js已經定義前綴路由為/filter，這裡的'/'代表著/filter
   const filter = req.query.filter
   const categoryList = []
-  let totalAmount = 0
+  let totalamount = 0
+  // console.log(filter)  OK
   if (filter === '篩選支出') {
     res.render('/')
   } else {
@@ -18,11 +20,13 @@ router.get('/filter', (req, res) => {
 
     Record.find({ category: filter })
       .lean()
-      .then((records) => {
-        records.forEach((record) => {
-          totalAmount += record.amount
+      .then((record) => {
+        // console.log(records)  OK
+        record.forEach((record) => {
+          totalamount += record.amount
+          // console.log(totalAmount) OK
         })
-        res.render('index', { records, categoryList, totalAmount, filter })
+        res.render('index', { record, categoryList, totalamount, filter })
       })
   }
 })
