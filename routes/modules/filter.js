@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   let totalamount = 0
   // console.log(filter)  OK
   if (filter === '篩選支出') {
-    res.render('/')
+    res.redirect('/')
   } else {
     Category.find()
       .lean()
