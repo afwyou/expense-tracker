@@ -15,14 +15,7 @@ router.get('/', (req, res) => {
       items.forEach((item) => categoryList.push(item.category))
     })
 
-  const amount = Record.aggregate([
-    {
-      $group: {
-        _id: null,//沒有要根據什麼來分組
-        totalamount: { $sum: "$amount" }//我要操作的資料代號是amount，這個資料代號代表我要加總($sum)欄位amount的值
-      }
-    }
-  ]).exec()
+  const amount = Record.count()
 
 
   const record = Record.aggregate([
@@ -41,7 +34,7 @@ router.get('/', (req, res) => {
   Promise.all([amount, record, categoryList])
     .then(([amount, record, categoryList]) => {
 
-      const totalamount = amount[0].totalamount
+      const totalamount = amount
 
       res.render('index', { totalamount, record, categoryList })
       // console.log(amount) //is an array
