@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
+const PORT = process.env.PORT || 3000
 require('./config/mongoose')
 
 const bodyParser = require('body-parser')
@@ -22,6 +23,6 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 
-app.listen(3000, () => {
-  console.log('Listen to the http://localhost:3000')
+app.listen(PORT, () => {
+  console.log(`Listen to the http://localhost:${PORT}`)
 })
