@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "中餐",
+      "category": "food",
+      "date": "2021-06-17",
+      "amount": "3454",
+      "categoryIcon": "fas fa-utensils",
+      "merchant": "麥當勞"
+    },
+    {
+      "id": 2,
+      "name": "晚餐",
+      "category": "food",
+      "date": "2021-06-17",
+      "amount": "222",
+      "categoryIcon": "fas fa-utensils",
+      "merchant": "海鮮餐廳"
+    },
+    {
+      "id": 3,
+      "name": "輪胎",
+      "category": "transportation",
+      "date": "2021-06-10",
+      "amount": "900",
+      "categoryIcon": "fas fa-shuttle-van",
+      "merchant": "機車行"
+    },
+    {
+      "id": 4,
+      "name": "看電影",
+      "category": "entertainment",
+      "date": "2021-05-10",
+      "amount": "450",
+      "categoryIcon": "fas fa-grin-beam",
+      "merchant": "電影院"
+    }
+  ]
+}
