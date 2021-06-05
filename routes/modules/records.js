@@ -24,6 +24,7 @@ router.post('/', (req, res) => {
     .then((item) => {
       return (record.categoryIcon = item.categoryIcon, record.userId = userId)
     })
+    //原本userId似乎沒有存入mongodb，Record.create，還有record.save()的差別？
     .then(() => {
       console.log(record)
       Record.create(record)
