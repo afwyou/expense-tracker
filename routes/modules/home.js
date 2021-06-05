@@ -7,6 +7,7 @@ const Category = require('../../models/category')
 
 //定義路由首頁面
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const categoryList = []
   let totalamount = 0
   const filter = req.query.filter
@@ -16,11 +17,13 @@ router.get('/', (req, res) => {
       items.forEach((item) => categoryList.push(item.category))
     })
 
-  Record.find()
+  Record.find({ userId })
     .lean()
-    .then((record) => {
-      record.forEach((record) => (totalamount += record.amount))
-      res.render('index', { record, totalamount, categoryList })
+    // .sort({ _id: 'asc' })
+    .then((records) => {
+      console.log(records)
+      records.forEach((record) => (totalamount += record.amount))
+      res.render('index', { records, totalamount, categoryList })
     })
     .catch((error) => console.error(error))
 })

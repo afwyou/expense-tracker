@@ -4,6 +4,7 @@ const Category = require('../../models/category')
 const Record = require('../../models/record')
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   //在index.js已經定義前綴路由為/filter，這裡的'/'代表著/filter
   const filter = req.query.filter
   const categoryList = []
@@ -18,15 +19,15 @@ router.get('/', (req, res) => {
         items.forEach((item) => { categoryList.push(item.category) })
       })
 
-    Record.find({ category: filter })
+    Record.find({ category: filter, userId })
       .lean()
-      .then((record) => {
+      .then((records) => {
         // console.log(records)  OK
-        record.forEach((record) => {
+        records.forEach((record) => {
           totalamount += record.amount
           // console.log(totalAmount) OK
         })
-        res.render('index', { record, categoryList, totalamount, filter })
+        res.render('index', { records, categoryList, totalamount, filter })
       })
   }
 })

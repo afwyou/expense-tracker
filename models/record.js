@@ -7,6 +7,12 @@ const recordSchema = new Schema({
   amount: Number,
   categoryIcon: { type: String, },
   merchant: { type: String, },
+  userId: {  // 加入關聯設定
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
+  }
 })
 
 

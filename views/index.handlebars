@@ -32,7 +32,7 @@
 <div class="row mx-auto mb-3" style="width: 60%;">
   <ul class="list-group ">
 
-    {{#each record}}
+    {{#each records}}
     <div class="row records mb-2">
       <li class="list-group-item d-flex justify-content-between align-items-center ">
         <div class="col-1 my-0 d-flex justify-content-center">
@@ -40,6 +40,7 @@
         </div>
         <div class="col-5 px-3 record-detail mt-1">
           <p class="record-title">{{ this.name }}</p>
+          <p class="record-title">{{ this.merchant }}</p>
           <p class="record-date">{{ this.date }}</p>
         </div>
         <div class="col-2">
