@@ -9,6 +9,7 @@ const Category = require('../../models/category')
 router.get('/', (req, res) => {
   const userId = req.user._id
   const categoryList = []
+  const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dem']
   let totalamount = 0
   const filter = req.query.filter
   Category.find()
@@ -23,7 +24,7 @@ router.get('/', (req, res) => {
     .then((records) => {
       console.log(records)
       records.forEach((record) => (totalamount += record.amount))
-      res.render('index', { records, totalamount, categoryList })
+      res.render('index', { records, totalamount, categoryList, month })
     })
     .catch((error) => console.error(error))
 })
