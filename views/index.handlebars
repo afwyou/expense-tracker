@@ -18,7 +18,7 @@
         <i class="fas fa-filter filter-icon align-middle"></i>
         <select name="filterMonth" class="form-select mx-3 " id='inputType' aria-label="Default select example"
           style="width: fit-content;display:inline" onchange="this.form.submit()">
-          <option selected>選擇月份</option>
+          <option value="" selected>選擇月份</option>
           {{#each month}}
           <option value="{{this}}" {{#if (eq this ../filterMonth)}}selected {{/if}}>{{this}}</option>
           {{/each}}
@@ -27,7 +27,7 @@
 
         <select name="filter" class="form-select mx-3 " id='inputType' aria-label="Default select example"
           style="width: fit-content;display:inline" onchange="this.form.submit()">
-          <option selected>篩選支出</option>
+          <option value="" selected>篩選支出</option>
           {{#each categoryList}}
           <option value="{{this}}" {{#if (eq this ../filter)}}selected {{/if}}>{{this}}</option>
           {{/each}}

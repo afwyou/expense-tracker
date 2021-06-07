@@ -9,12 +9,24 @@ router.get('/', (req, res) => {
   const { filter, filterMonth } = req.query
   const categoryList = []
   const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dem']
-  let monthNumber = month.indexOf(filterMonth) || ''
-  let startTime = new Date(2021, monthNumber, 2, 0, 0, 0)
-  let endTime = new Date(2021, monthNumber, 29, 0, 0, 0)
   let totalamount = 0
-  console.log(monthNumber)
-  if (filter === '篩選支出' && filterMonth === '選擇月份') {
+  //取得月份的序列數值
+  let monthNumber = month.indexOf(filterMonth) || ''
+  //轉換月份數值，如果沒有選擇，則變成1到12月
+  function getMonthStart(monthNumber) {
+    return monthNumber === -1 ? 0 : monthNumber
+  }
+  function getMonthEnd(monthNumber) {
+    return monthNumber === -1 ? 11 : monthNumber
+  }
+  //設定撈資料的起始時間
+  let startTime = new Date(2021, getMonthStart(monthNumber), 2, 0, 0, 0)
+  let endTime = new Date(2021, getMonthEnd(monthNumber), 29, 0, 0, 0)
+
+
+
+
+  if (filter === '' && filterMonth === '') {
     res.redirect('/')
   } else {
     Category.find()
@@ -47,9 +59,11 @@ router.get('/', (req, res) => {
         records.forEach((record) => {
           totalamount += record.amount
         })
+        return records
         //把要渲染的物件、陣列，丟給view
-        res.render('index', { records, categoryList, totalamount, filter, filterMonth, month })
+
       })
+      .then((records) => res.render('index', { records, categoryList, totalamount, filter, filterMonth, month }))
       .catch(error => console.log(error))
   }
 })
