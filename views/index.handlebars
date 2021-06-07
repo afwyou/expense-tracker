@@ -16,11 +16,11 @@
     <div>
       <form action="/filter" method="GET">
         <i class="fas fa-filter filter-icon align-middle"></i>
-        <select name="filter" class="form-select mx-3 " id='inputType' aria-label="Default select example"
+        <select name="filterMonth" class="form-select mx-3 " id='inputType' aria-label="Default select example"
           style="width: fit-content;display:inline" onchange="this.form.submit()">
           <option selected>選擇月份</option>
           {{#each month}}
-          <option value="{{this}}" {{#if (eq this ../filter)}}selected {{/if}}>{{this}}</option>
+          <option value="{{this}}" {{#if (eq this ../filterMonth)}}selected {{/if}}>{{this}}</option>
           {{/each}}
         </select>
 
